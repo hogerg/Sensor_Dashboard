@@ -1,0 +1,121 @@
+html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-variant: normal;
+}
+
+body:before {
+    background-image: url('/r/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    content: "";
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.navbar-brand {
+    cursor: default;
+    font-variant: small-caps;
+}
+
+#content {
+    height: 100%;
+    padding-top: 80px;
+}
+
+fieldset.title {
+    border-top: 2px solid white;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+fieldset.title > legend {
+    width: auto;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.list-group {
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    padding: 0.4rem 1rem;
+    font-size: 12px;
+    background-color: rgba(0,0,0, 0.8);
+    color: white;
+}
+
+.list-group-header {
+    padding: .75rem 1.25rem;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-sd, .btn-sd:active, .btn-sd:focus {
+    background-color: rgba(0,0,0, 0.8);
+    color: white;
+    border-color: black;
+    outline: none;
+    transition-duration: 0.35s;
+}
+
+.btn-sd:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+    outline: none;
+    transition-duration: 0.35s;
+}
+
+#accordion {
+    margin-bottom: 70px;
+}
+
+.card {
+    border: none;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.card-header {
+    background-color: rgba(0,0,0, 0.8);
+}
+
+.card-header a {
+    color: white;
+    text-decoration: none;
+}
+
+.card-block {
+    text-align: justify;
+}
+
+.card-block i {
+    cursor: pointer;
+}
+
+.meas-block {
+    padding-left: 5px;
+    border-left: solid rgba(255,0,0,0.8) 5px;
+}
+
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    text-align: right;
+}
+
+footer .container span {
+    line-height: 50px;
+}

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Sensor Dashboard</title>
+    <link rel="shortcut icon" href="/r/img/vik_logo.png" />
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,8 +12,76 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+    <link href="/r/css/content.css" rel="stylesheet" type="text/css">
 </head>
-<body ng-app="sensorDashboard" ng-controller="dashboardController">
+<body ng-app="sensorDashboard" ng-controller="dashboardController" ng-init="getDevices()">
+
+    <nav class="navbar fixed-top navbar-inverse bg-inverse">
+        <i id="nav_back" class="fa fa-arrow-left" aria-hidden="true" ng-hide="true"></i>
+        <a class="navbar-brand mx-auto" href="#">Sensor Dashboard</a>
+    </nav>
+
+    <div id="content" class="container-fluid text-center">
+
+            <div class="col-md-10 offset-md-1" ng-cloak>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="list-group">
+                            <span class="list-group-item list-group-header d-inline-block text-center">Devices</span>
+                            <button type="button" class="list-group-item list-group-item-action btn-sd"
+                                    ng-repeat="device in devices" ng-click="deviceDetails(device.id)">{{device.name}}</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <fieldset class="title" ng-show="!selected">
+                            <legend>Select a device!</legend>
+                        </fieldset>
+
+                        <fieldset class="title" ng-show="selected">
+                            <legend>{{device.name}}</legend>
+                        </fieldset>
+
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card" ng-repeat="sensorHandle in device.sensors">
+                                <div class="card-header" role="tab" id="heading{{$index}}">
+                                    <h5 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}"
+                                           aria-expanded="true" aria-controls="collapse{{$index}}"
+                                           ng-click="sensorDetails(sensorHandle.id)">
+                                            {{sensorHandle.name}}
+                                        </a>
+                                    </h5>
+                                </div>
+
+                                <div id="collapse{{$index}}" class="collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
+                                    <div class="card-block">
+                                        <i class="fa fa-refresh pull-right" aria-hidden="true" ng-click="sensorDetails(sensorHandle.id)"></i>
+                                        <div class="meas-block mt-2 mb-2" ng-repeat="measurement in sensor.measurements">
+                                            Measurement: {{measurement.name}}
+                                            <br/>
+                                            Value: {{measurement.value|limitTo:8}} {{measurement.unit}}
+                                            <br/>
+                                            Date: {{measurement.date|date:'yyyy-MM-dd HH:mm:ss'}}
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Hodány Gergő @ 2017</span>
+        </div>
+    </footer>
 
     <!-- Bootstrap V4.0 scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
